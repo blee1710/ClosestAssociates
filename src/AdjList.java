@@ -36,19 +36,6 @@ public class AdjList extends AbstractAssocGraph
 
 	} // end of addVertex()
 
-	/**
-	 * Adds an edge to the graph. If the edge already exists in the graph, no
-	 * changes are made. If one of the vertices doesn't exist, a warning to
-	 * System.err should be issued and no edge or vertices should be added.
-	 *
-	 * @param srcLabel
-	 *            Source vertex of edge to add.
-	 * @param tarLabel
-	 *            Target vertex of edge to add.
-	 * @param weight
-	 *            Integer weight to add between edges.
-	 */
-
 	public void addEdge(String srcLabel, String tarLabel, int weight)
 	{
 		/* checks for existing vertexes */
@@ -57,7 +44,7 @@ public class AdjList extends AbstractAssocGraph
 
 		if (!srcCheck || !tarCheck)
 		{
-			System.err.println("add edge Source vertex or target vertex does not exist, no changes made");
+			System.err.println("Source vertex or target vertex does not exist, no changes made");
 			return;
 		}
 
@@ -71,7 +58,6 @@ public class AdjList extends AbstractAssocGraph
 		LinkedList nList = asscGraph.get(srcLabel);
 		nList.add(tarLabel, weight);
 		asscGraph.put(srcLabel, nList);
-		System.err.println("added edge " + tarLabel + " to vert " + srcLabel);
 	} // end of addEdge()
 
 	public int getEdgeWeight(String srcLabel, String tarLabel)
@@ -123,16 +109,12 @@ public class AdjList extends AbstractAssocGraph
 			System.err.print("Edge " + tarLabel + "length is " + asscGraph.get(srcLabel).getLength());
 			nList.deleteNode(tarLabel);
 			asscGraph.put(srcLabel, nList);
-			System.err.println("Edge " + tarLabel + " deleted(xd) from " + srcLabel + "new length is "
-					+ asscGraph.get(srcLabel).getLength());
 		}
 		else
 		{
 			/* changes edge */
 			nList.updateEdgeWeight(tarLabel, weight);
 			asscGraph.put(srcLabel, nList);
-			System.err.println("Edge " + tarLabel + " updated to " + weight);
-
 		}
 
 	} // end of updateWeightEdge()
@@ -149,9 +131,7 @@ public class AdjList extends AbstractAssocGraph
 				{
 					asscGraph.get(exist).deleteNode(vertLabel);
 				}
-
 				asscGraph.remove(vertLabel);
-				System.err.println("removed vertex " + vertLabel);
 				return;
 			}
 		}
@@ -331,6 +311,7 @@ public class AdjList extends AbstractAssocGraph
 			return -1;
 		}
 
+		/* returns an array of pairs for the outNearestNeighbours method*/
 		public MyPair[] returnPairs()
 		{
 
@@ -346,7 +327,7 @@ public class AdjList extends AbstractAssocGraph
 			}
 			return pairArray;
 		}
-
+		/* returns a pair for the inNearestNeighbours method */
 		public MyPair returnInPair(String srcVert, String tarVert)
 		{
 			MyPair pair = new MyPair(null, null);
@@ -383,7 +364,7 @@ public class AdjList extends AbstractAssocGraph
 				}
 			}
 		}
-
+		/* generates string used when printing vertexes and their edges */
 		public String generatePrintString(String srcLabel)
 		{
 			String printString = "";
