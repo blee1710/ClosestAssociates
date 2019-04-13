@@ -98,7 +98,7 @@ public class AdjList extends AbstractAssocGraph
 		/* checking for existing edge */
 		if (asscGraph.get(srcLabel).findEdgeWeight(tarLabel) == -1)
 		{
-			System.err.println("Edge does not exist, no changes made");
+			System.err.println("Edge " + tarLabel +  " does not exist. No changes made");
 			return;
 		}
 
@@ -106,7 +106,6 @@ public class AdjList extends AbstractAssocGraph
 		/* checking for 0 weight, with deletion */
 		if (weight == 0)
 		{
-			System.err.print("Edge " + tarLabel + "length is " + asscGraph.get(srcLabel).getLength());
 			nList.deleteNode(tarLabel);
 			asscGraph.put(srcLabel, nList);
 		}
