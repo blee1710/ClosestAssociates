@@ -74,4 +74,4 @@ Example: 'rv %ev' will generate commands such as
 
 else:
     opGen = OpGen(sys.argv[1])
-    opGen.genOps(sys.argv[2], sys.argv[3])
+    opGen.genOps(sys.argv[2], int(sys.argv[3]))
