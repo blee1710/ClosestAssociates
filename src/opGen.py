@@ -48,9 +48,11 @@ class OpGen():
 
         if command == "ev":
             return str(random.randint(0, self.vertexCount - 1))
-        elif command == "ee":
+        elif command == "ze":
             edgeIndex = random.randint(0, self.edgeCount - 1)
-            return str(' '.join(self.edges[edgeIndex]))
+            randomEdge = self.edges[edgeIndex]
+            randomEdge[2] = "0"
+            return str(' '.join(randomEdge))
         elif command == "ue":
             edgeIndex = random.randint(0, self.edgeCount - 1)
             randomEdge = self.edges[edgeIndex]
@@ -64,7 +66,7 @@ if len(sys.argv) != 4:
 
 Where format can include the following special tokens
 %ev : use an existing vertex from the graph
-%ee : use an existing edge from the graph
+%ze : use an existing edge from the graph with a weight of zero
 %ue : use an edge from the graph with an updated weight
 
 Example: 'rv %ev' will generate commands such as
