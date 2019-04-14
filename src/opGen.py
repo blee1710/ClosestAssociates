@@ -27,8 +27,8 @@ class OpGen():
 
         self.vertexCount = maxVertex + 1
 
-    def genOps(self, format):
-        for i in range(10):
+    def genOps(self, format, count):
+        for i in range(count):
             print(self.genOp(format))
 
     def genOp(self, format):
@@ -59,8 +59,8 @@ class OpGen():
             
             return str(' '.join(randomEdge))
 
-if len(sys.argv) != 3:
-    print("""Usage: opGen.py <graphfile> <format>
+if len(sys.argv) != 4:
+    print("""Usage: opGen.py <graphfile> <format> <no. operations>
 
 Where format can include the following special tokens
 %ev : use an existing vertex from the graph
@@ -74,4 +74,4 @@ Example: 'rv %ev' will generate commands such as
 
 else:
     opGen = OpGen(sys.argv[1])
-    opGen.genOps(sys.argv[2])
+    opGen.genOps(sys.argv[2], sys.argv[3])
