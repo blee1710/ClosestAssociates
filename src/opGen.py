@@ -16,16 +16,7 @@ class OpGen():
             for row in reader:
                 self.edges.append(row)
 
-        self.getVertexCount()
         self.edgeCount = len(self.edges)
-
-    def getVertexCount(self):
-        maxVertex = 0
-
-        for edge in self.edges:
-            maxVertex = max(maxVertex, int(edge[0]), int(edge[1]))
-
-        self.vertexCount = maxVertex + 1
 
     def genOps(self, format, count):
         for i in range(count):
@@ -47,7 +38,11 @@ class OpGen():
         command = token[1:].lower()
 
         if command == "ev":
-            return str(random.randint(0, self.vertexCount - 1))
+            edgeIndex = random.randint(0, self.edgeCount - 1)
+            randomEdge = self.edges[edgeIndex]
+            randomSide = random.randint(0, 1)
+            return randomEdge[randomSide]
+
         elif command == "ze":
             edgeIndex = random.randint(0, self.edgeCount - 1)
             randomEdge = self.edges[edgeIndex]
